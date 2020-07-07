@@ -32,7 +32,7 @@ class LogiqBackend(SingleTextQueryBackend):
         eventRule["groupName"] = sigmaparser.parsedyaml["logsource"].get("product", "")
         eventRule["description"] = sigmaparser.parsedyaml["description"]
         eventRule["condition"] = sigmaparser.parsedyaml["detection"]
-        eventRule["level"] = sigmaparser.parsedyaml["level"]
+        eventRule["level"] = sigmaparser.parsedyaml.setdefault("level", "")
 
         for parsed in sigmaparser.condparsed:
             query = self.generateQuery(parsed)
